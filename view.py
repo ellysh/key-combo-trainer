@@ -42,7 +42,6 @@ def make_window(title):
   FONT = pygame.font.SysFont(None, 24)
 
   window_surface = pygame.display.set_mode((_WINDOW_WIDTH, _WINDOW_HEIGHT))
-  window_surface.fill(_COLOR_GREY)
 
   pygame.display.set_caption(title)
 
@@ -101,9 +100,14 @@ def is_combo_pressed(key, target):
     return False
 
 
-def main_loop(window_surface, clock):
+def update_target(window_surface):
+  window_surface.fill(_COLOR_GREY)
   draw_text(window_surface, _KEY_COMBO, 20, 20)
-  target = draw_target(window_surface)
+  return draw_target(window_surface)
+
+
+def main_loop(window_surface, clock):
+  target = update_target(window_surface)
 
   while True:
 
@@ -112,10 +116,7 @@ def main_loop(window_surface, clock):
         terminate()
       if event.type == KEYDOWN:
         if is_combo_pressed(event.key, target):
-
-          window_surface.fill(_COLOR_GREY)
-          draw_text(window_surface, "weq", 20, 20)
-          target = draw_target(window_surface)
+          target = update_target(window_surface)
 
     pygame.display.update()
     clock.tick(_FPS)

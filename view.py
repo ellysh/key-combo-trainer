@@ -6,11 +6,13 @@ from pygame.locals import *
 
 _COLOR_GREY = (128, 128, 128)
 _COLOR_BLUE = (85, 206, 255)
+_COLOR_GREEN = (0, 200, 0)
 
 _WINDOW_WIDTH = 750
 _WINDOW_HEIGHT = 750
 _FPS = 75
 
+FONT = None
 
 def terminate():
     pygame.quit()
@@ -18,7 +20,11 @@ def terminate():
 
 
 def make_window(title):
+  global FONT
+
   pygame.init()
+
+  FONT = pygame.font.SysFont(None, 24)
 
   window_surface = pygame.display.set_mode((_WINDOW_WIDTH, _WINDOW_HEIGHT))
   window_surface.fill(_COLOR_GREY)
@@ -52,7 +58,17 @@ def is_mouse_hits_target(target_x, target_y, target_size):
   return math.sqrt(sqx + sqy) < target_size and mouse_click[0] == 1
 
 
+def draw_text(window_surface, text, x, y):
+  global FONT
+
+  text_object = FONT.render(text, 1, _COLOR_GREEN)
+  text_rectangle = text_object.get_rect()
+  text_rectangle.topleft = (x, y)
+  window_surface.blit(text_object, text_rectangle)
+
+
 def main_loop(window_surface, clock):
+  draw_text(window_surface, "weq", 20, 20)
   target_x, target_y, target_size = draw_target(window_surface)
 
   while True:
@@ -65,6 +81,7 @@ def main_loop(window_surface, clock):
 
     if is_mouse_hits_target(target_x, target_y, target_size):
       window_surface.fill(_COLOR_GREY)
+      draw_text(window_surface, "weq", 20, 20)
       target_x, target_y, target_size = draw_target(window_surface)
 
     pygame.display.update()

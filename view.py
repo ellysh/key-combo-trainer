@@ -2,6 +2,7 @@ import pygame
 import sys
 import random
 import math
+import time
 
 from dataclasses import dataclass
 from pygame.locals import *
@@ -22,11 +23,15 @@ KEY_INDEX = 0
 _KEY_COMBO = "weq"
 
 
+LAST_RESULT = 0
+
+
 @dataclass
 class Target:
     x: int
     y: int
     size: int
+    time: int
 
 
 def terminate():
@@ -50,11 +55,16 @@ def make_window(title):
   return window_surface, clock
 
 
+def get_current_ms():
+    return round(time.time() * 1000)
+
+
 def draw_target(window_surface):
   target = Target(
     x = random.randint(20, _WINDOW_WIDTH - 20), \
     y = random.randint(50, _WINDOW_HEIGHT - 20), \
-    size = random.randint(14, 20))
+    size = random.randint(14, 20),
+    time = get_current_ms())
 
   pygame.draw.circle(window_surface, _COLOR_BLUE, \
                      (target.x, target.y), target.size)
@@ -103,7 +113,15 @@ def is_combo_pressed(key, target):
 def update_target(window_surface):
   window_surface.fill(_COLOR_GREY)
   draw_text(window_surface, _KEY_COMBO, 20, 20)
+  draw_text(window_surface, "{} ms".format(str(LAST_RESULT)), 650, 20)
+
   return draw_target(window_surface)
+
+
+def update_time_result(target):
+  global LAST_RESULT
+
+  LAST_RESULT = get_current_ms() - target.time
 
 
 def main_loop(window_surface, clock):
@@ -116,6 +134,7 @@ def main_loop(window_surface, clock):
         terminate()
       if event.type == KEYDOWN:
         if is_combo_pressed(event.key, target):
+          update_time_result(target)
           target = update_target(window_surface)
 
     pygame.display.update()

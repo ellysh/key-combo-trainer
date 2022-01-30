@@ -3,6 +3,7 @@ import sys
 import random
 import math
 import time
+import model
 
 from dataclasses import dataclass
 from pygame.locals import *
@@ -17,10 +18,6 @@ _WINDOW_HEIGHT = 750
 _FPS = 75
 
 FONT = None
-
-
-KEY_INDEX = 0
-_KEY_COMBO = "weq"
 
 
 LAST_RESULT = 0
@@ -91,28 +88,9 @@ def draw_text(window_surface, text, x, y):
   window_surface.blit(text_object, text_rectangle)
 
 
-def is_combo_pressed(key, target):
-  global KEY_INDEX
-
-  if key == ord(_KEY_COMBO[KEY_INDEX]) \
-     and is_mouse_on_target(target):
-
-    if KEY_INDEX+1 == len(_KEY_COMBO):
-      KEY_INDEX = 0
-      return True
-
-    elif KEY_INDEX+1 < len(_KEY_COMBO):
-      KEY_INDEX += 1
-      return False
-
-  else:
-    KEY_INDEX = 0
-    return False
-
-
 def update_target(window_surface):
   window_surface.fill(_COLOR_GREY)
-  draw_text(window_surface, _KEY_COMBO, 20, 20)
+  draw_text(window_surface, model._KEY_COMBO, 20, 20)
   draw_text(window_surface, "{} ms".format(str(LAST_RESULT)), 20, 50)
 
   return draw_target(window_surface)
@@ -133,7 +111,7 @@ def main_loop(window_surface, clock):
       if event.type == QUIT:
         terminate()
       if event.type == KEYDOWN:
-        if is_combo_pressed(event.key, target):
+        if model.is_combo_pressed(event.key, target, is_mouse_on_target):
           update_time_result(target)
           target = update_target(window_surface)
 

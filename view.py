@@ -91,7 +91,7 @@ def draw_text(window_surface, text, x, y):
 def update_target(window_surface):
   model.update_key_combo()
   window_surface.fill(_COLOR_GREY)
-  draw_text(window_surface, model.KEY_COMBO, 20, 20)
+  draw_text(window_surface, model.KEY_COMBO.upper(), 20, 20)
   draw_text(window_surface, "{} ms".format(str(LAST_RESULT)), 20, 50)
 
   return draw_target(window_surface)

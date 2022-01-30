@@ -82,10 +82,11 @@ def draw_text(window_surface, text, x, y):
   window_surface.blit(text_object, text_rectangle)
 
 
-def is_combo_pressed(key):
+def is_combo_pressed(key, target):
   global KEY_INDEX
 
-  if key == ord(_KEY_COMBO[KEY_INDEX]):
+  if key == ord(_KEY_COMBO[KEY_INDEX]) \
+     and is_mouse_on_target(target):
 
     if KEY_INDEX+1 == len(_KEY_COMBO):
       KEY_INDEX = 0
@@ -110,8 +111,7 @@ def main_loop(window_surface, clock):
       if event.type == QUIT:
         terminate()
       if event.type == KEYDOWN:
-        if is_combo_pressed(event.key) \
-           and is_mouse_on_target(target):
+        if is_combo_pressed(event.key, target):
 
           window_surface.fill(_COLOR_GREY)
           draw_text(window_surface, "weq", 20, 20)

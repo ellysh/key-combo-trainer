@@ -12,6 +12,8 @@ _WINDOW_WIDTH = 750
 _WINDOW_HEIGHT = 750
 _FPS = 75
 
+_KEY_COMBO = "weq"
+
 FONT = None
 
 def terminate():
@@ -66,9 +68,28 @@ def draw_text(window_surface, text, x, y):
   text_rectangle.topleft = (x, y)
   window_surface.blit(text_object, text_rectangle)
 
+KEY_INDEX = 0
+
+def is_combo_pressed(key):
+  global KEY_INDEX
+
+  if key == ord(_KEY_COMBO[KEY_INDEX]):
+
+    if KEY_INDEX+1 == len(_KEY_COMBO):
+      KEY_INDEX = 0
+      return True
+
+    elif KEY_INDEX+1 < len(_KEY_COMBO):
+      KEY_INDEX += 1
+      return False
+
+  else:
+    KEY_INDEX = 0
+    return False
+
 
 def main_loop(window_surface, clock):
-  draw_text(window_surface, "weq", 20, 20)
+  draw_text(window_surface, _KEY_COMBO, 20, 20)
   target_x, target_y, target_size = draw_target(window_surface)
 
   while True:
@@ -77,7 +98,10 @@ def main_loop(window_surface, clock):
       if event.type == QUIT:
         terminate()
       if event.type == KEYDOWN:
-        terminate()
+        if is_combo_pressed(event.key):
+          window_surface.fill(_COLOR_GREY)
+          draw_text(window_surface, "weq", 20, 20)
+          target_x, target_y, target_size = draw_target(window_surface)
 
     if is_mouse_hits_target(target_x, target_y, target_size):
       window_surface.fill(_COLOR_GREY)

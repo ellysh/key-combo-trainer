@@ -49,15 +49,14 @@ def draw_target(window_surface):
   return target_x, target_y, target_size
 
 
-def is_mouse_hits_target(target_x, target_y, target_size):
+def is_mouse_on_target(target_x, target_y, target_size):
   mouse_x = pygame.mouse.get_pos()[0]
   mouse_y = pygame.mouse.get_pos()[1]
-  mouse_click = pygame.mouse.get_pressed()
 
   sqx = (mouse_x - target_x)**2
   sqy = (mouse_y - target_y)**2
 
-  return math.sqrt(sqx + sqy) < target_size and mouse_click[0] == 1
+  return math.sqrt(sqx + sqy) < target_size
 
 
 def draw_text(window_surface, text, x, y):
@@ -98,15 +97,12 @@ def main_loop(window_surface, clock):
       if event.type == QUIT:
         terminate()
       if event.type == KEYDOWN:
-        if is_combo_pressed(event.key):
+        if is_combo_pressed(event.key) \
+           and is_mouse_on_target(target_x, target_y, target_size):
+
           window_surface.fill(_COLOR_GREY)
           draw_text(window_surface, "weq", 20, 20)
           target_x, target_y, target_size = draw_target(window_surface)
-
-    if is_mouse_hits_target(target_x, target_y, target_size):
-      window_surface.fill(_COLOR_GREY)
-      draw_text(window_surface, "weq", 20, 20)
-      target_x, target_y, target_size = draw_target(window_surface)
 
     pygame.display.update()
     clock.tick(_FPS)

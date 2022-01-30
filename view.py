@@ -44,7 +44,7 @@ def make_window(title):
 
   pygame.init()
 
-  FONT = pygame.font.SysFont(None, 24)
+  FONT = pygame.font.SysFont(None, 30)
 
   window_surface = pygame.display.set_mode((_WINDOW_WIDTH, _WINDOW_HEIGHT))
 
@@ -113,7 +113,7 @@ def is_combo_pressed(key, target):
 def update_target(window_surface):
   window_surface.fill(_COLOR_GREY)
   draw_text(window_surface, _KEY_COMBO, 20, 20)
-  draw_text(window_surface, "{} ms".format(str(LAST_RESULT)), 650, 20)
+  draw_text(window_surface, "{} ms".format(str(LAST_RESULT)), 20, 50)
 
   return draw_target(window_surface)
 

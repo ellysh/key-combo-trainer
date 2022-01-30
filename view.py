@@ -54,7 +54,7 @@ def make_window(title):
 def draw_target(window_surface):
   target = Target(
     x = random.randint(20, _WINDOW_WIDTH - 20), \
-    y = random.randint(20, _WINDOW_HEIGHT - 20), \
+    y = random.randint(50, _WINDOW_HEIGHT - 20), \
     size = random.randint(14, 20))
 
   pygame.draw.circle(window_surface, _COLOR_BLUE, \

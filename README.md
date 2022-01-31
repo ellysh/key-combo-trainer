@@ -14,18 +14,22 @@ You need the following for launching the Key Combo Trainer:
 
 Here are steps to install Key Combo Trainer and its dependencies on Windows:
 
-1. Download the Python 3 distribution and install it:<br/>
+1. Download the Python 3 distribution from here:<br/>
 https://www.python.org/downloads/release/python-373/
 
-2. Open the command prompt. Type "cmd" in the Windows Start menu and press enter.
+2. Install the Python 3. Make sure that you enabled the checkbox "Add Python 3.7 to PATH" (see the screenshot below).
 
-3. Install the `pygame` module by the following command in command prompt:<br/>
+![Python 3 installer](images/readme/python-installation.png)
+
+3. Open the command prompt. Type "cmd" in the Windows Start menu and press enter.
+
+4. Install the `pygame` module by the following command in command prompt:<br/>
 `python -m pip install pygame`
 
-4. Install the `dataclasses` module by the following command in command prompt:<br/>
+5. Install the `dataclasses` module by the following command in command prompt:<br/>
 `python -m pip install dataclasses`
 
-5. Download the archive with the Key Combo Trainer and extract it:<br/>
+6. Download the archive with the Key Combo Trainer and extract it:<br/>
 https://github.com/ellysh/key-combo-trainer/archive/master.zip
 
 ### Linux
@@ -65,13 +69,15 @@ The window on the screenshot has three elements:
 
 Here are the steps to use the trainer:
 
-1. Place the mouse cursor on the blue point.
+1. Place the mouse cursor on the blue point and keep it there.
 
 2. Press the key combo from the upper-left corner of the window.
 
-3. Check how fast you are doing with the time estimation in the upper-left corner of the window.
+3. If you press the combo right, you will see a new blue point and a key combo. If you make a mistake or move the cursor out of the blue point, you should repeat the combo from the beginning.
 
-4. Practice more to react and press combos as fast as possible.
+4. Check how fast you are doing with the time estimation in the upper-left corner of the window.
+
+5. Practice more to react and press combos as fast as possible.
 
 ## Configuration
 

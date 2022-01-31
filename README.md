@@ -1,186 +1,102 @@
-# Dota 2 Counter Picker 0.9.0 version
+# Key Combo Trainer 0.1.0 version
 
-This the utility for choosing the best combinations of heroes and counter picks.
+This is the key combo trainer for League of Legends and Dota 2 players.
 
 A current development state is available in the [`CHANGELOG.md`](CHANGELOG.md) file.
 
 ## Installation
 
-You need two Python 3, Tkinter and Pillow modules to launch the Dota 2 Counter Picker.
+You need Python 3, PyGame and dataclasses modules for launching the Key Combo Trainer.
 
 ### Windows
 
-These are steps to install dota2picker on Windows:
+These are steps to install Key Combo Trainer on Windows:
 
-1. Download the Python 3 distribution:<br/>
+1. Download the Python 3 distribution and install it:<br/>
 https://www.python.org/downloads/release/python-373/
 
-2. Install Python 3.
+2. Install the `pygame` module:<br/>
+`python -m pip install pygame`
 
-3. Install Dota 2 Counter Picker:<br/>
-`python -m pip install --user dota2picker`
+3. Install the `dataclasses` module:<br/>
+`python -m pip install dataclasses`
 
-This is an alternative way to install dota2picker from github repository:
+4. Download the archive with Key Combo Trainer and extract it:<br/>
+https://github.com/ellysh/key-combo-trainer/archive/master.zip
 
-1. Install the `pillow` module:<br/>
-`python -m pip install pillow`
+### Linux
 
-2. Install the `setuptools` module:<br/>
-`python -m pip install setuptools`
-
-3. Download the archive with the dota2picker and extract it:<br/>
-https://github.com/ellysh/dota2-counter-picker/archive/master.zip
-
-4. Change directory to the `dota2-counter-picker` and launch the command:<br/>
-`python setup.py install --user`
-
-In both variants, dota2picker will be installed to the following directory (example for Python 3.6 version):<br/>
-`C:\Users\<username>\AppData\Roaming\Python\Python36\Sripts`
-
-### Ubuntu
-
-These are steps to install dota2picker on Linux:
+These are steps to install Key Combo Trainer on Linux:
 
 1. Install the Python 3:<br/>
 `sudo apt-get install python3`
 
-2. Install the Tkinter module:<br/>
-`sudo apt-get install python3-tk`
-
-3. Install the pip package manager:<br/>
+2. Install the pip package manager:<br/>
 `sudo apt-get install python3-pip`
 
-4. Install Dota 2 Counter Picker:<br/>
-`pip3 install dota2picker`
+3. Install the PyGame module:<br/>
+`pip3 install pygame`
 
-Dota2picker will be installed to the `/usr/local/bin/` directory.
+4. Install the dataclasses module:<br/>
+`pip3 install dataclasses`
 
-This is an alternative way to install dota2picker from github repository:
-
-1. Install the `pillow` module:<br/>
-`sudo apt-get install python3-pil.imagetk`
-
-2. Install the `setuptools` module:<br/>
-`pip install setuptools`
-
-3. Download the archive with the dota2picker and extract it:<br/>
-https://github.com/ellysh/dota2-counter-picker/archive/master.zip
-
-4. Change directory to the `dota2-counter-picker` and launch the command:<br/>
-`python setup.py install --user`
-
-Dota2picker will be installed to the `~/.local/bin` directory.
+5. Download the archive with Key Combo Trainer and extract it:<br/>
+https://github.com/ellysh/key-combo-trainer/archive/master.zip
 
 ## Usage
 
-### Picker
+Launch the `key-combo-trainer.py` script in the `key-combo-trainer` directory to start the Key Combo Trainer. The main window of the trainer looks like this:
 
-The `d2-picker` script shows you which heroes are bad or good against the chosen one. Also, the script shows which heroes can be combined well.
+![Key Combo Trainer](images/readme/key-combo-trainer-window.png)
 
-![Picker Script](dota2picker/images/readme/picker-window.png)
+The window on the screenshot has three elements:
 
-Start the `d2-picker` script and click on the hero icon. The yellow color will highlight it. The red color highlights all heroes who can easily beat the selected one. We can say that the selected hero is "bad against" them. The green color means that the chosen hero is "good against" the selected ones. The blue color shows heroes which can be combined effectively with the selected hero in one team. It means that he "works well with" them.
+1. The **DF2** text in the upper-left corner of the window. This is the key combo that you should press as fast as possible.
 
-The script allows you to pick several heroes at the same time. Then it shows relations of all picked heroes.
+2. The **1999 ms** text is the time that you spend by pressing the previous key combo.
 
-There are three digits under each hero icon which estimate him. These are meaning of these digits:
+3. Blue point in the bottom-right corner of the window. This is the place where you should put the mouse cursor before pressing the key combo.
 
-1. How many of the picked heroes (they are highlighted yellow) are bad against the hero on the corresponding icon?
-2. How many of the picked heroes are good against this one?
-3. How many of the picked heroes are works well with this one?
+Here are steps to use the trainer:
 
-Let's consider an example with the window on the screenshot above. The enemy team has picked two heroes: Mars and Monkey King. Both of them are bad against Batrider. Thus, Batrider gets scores "2 0 0". If you pick Batrider for your team, it will be a good choice in this case.
+1. Put the mouse cursor on the blue point.
 
-At the same time, Monkey King is bad against Spectre but Mars is good against her. Thus, Spectre gets scores "1 1 0". She is still highlighted red because her bad and good scores are equal. She will get the green color in case of "1 2 0" scores for example. If you pick Spectre against Mars and Monkey King, probably you will have a tough game.
+2. Press the key combo from the upper-left corner of the window.
 
-There are three buttons with red, green and blue color at the bottom of the window. You can press each button and filter the highlighted heroes. If you press the red button, only heroes which are strong against the chosen one will be highlighted. The green and blue buttons work the same for "good against..." and "works well with..." heroes.
+3. Check how fast are you with the time estimation in the upper-left corner of the window.
 
-You can cancel the current selection of heroes by the *Esc* button.
+4. Practice more to react and press combos as fast as possible.
 
-### Editor
+## Configuration
 
-The initial version of the database with heroes was prepared based on the [Dota 2 Wiki](https://dota2.gamepedia.com/Category:Counters). The `d2-editor` script allows you to edit this database.
+The Key Combo Trainer generates the key combos randomly. You can change the keys in these combos and their length. Here are the steps to do that:
 
-![Editor Script](dota2picker/images/readme/editor-window.png)
+1. Open the `model.py` script in the code or text editor.
 
-Start the `d2-editor` script. It looks like the `d2-picker` script. Meaning of all colors is the same.
-
-These are steps to remove the hero from the "bad against..." relations:
-
-1. Choose the Lifestealer hero for example. The yellow color will highlight him.
-
-2. Press the red button at the bottom of the window. You will see only heroes with "bad against..." relations for Lifestealer. Now you are in the editing mode.
-
-3. Press the Monkey King hero. You will see that the color of his button becomes grey. This hero was removed from the "bad against..." relations for Lifestealer.
-
-4. Finish the editing mode by pressing the red button again. Now you see all three relations of Lifestealer. Monkey King hero is not counter pick for Lifestealer anymore.
-
-You can follow the same algorithm for adding a hero to relations. Also, you should follow the same steps for adding/removing a hero to the "good against..." and "works well with..." relations.
-
-The `d2-picker`, `d2-checker` and `d2-editor` scripts use the same database. It means that you will see all your changes in all these scripts.
-
-This is path to database with heroes on Linux:<br/>
-`~/.local/share/dota2picker/Database.pkl`
-
-This is path to database with heroes on Windows:<br/>
-`C:\User\<username>\AppData\Local\dota2picker\Database.pkl`
-
-### Checker
-
-After editing the database, you want to check if it is consistent. The possible issue is you specify a hero A as "bad against..." the hero B but you forget to specify vice versa relation. This relation means that the hero B should be "good against..." the hero A. The `d2-checker` script checks for such kind of mistakes in the database. If you launch the script in the console (or Command Prompt on Windows), you see the report about such mistakes.
-
-This is an example output of the script:
+2. Find the following lines:
+```Python
+_KEY_SYMBOLS = "123aqwerdf"
+_KEY_LENGTH_MIN = 2
+_KEY_LENGTH_MAX = 4
 ```
-Tiny is "good against" Naga Siren but Naga Siren is not "bad against" Tiny
-```
-By default, the script does not fix these issues but it has two option to do it:
 
-1. Use the `-a` command line option to add missing heroes to the required list:
-```
-checker.py -a
-```
-Let's see on our example output above. After the command with `-a`, Tiny will be added to the Naga Siren's "bad against" list.
+3. Put the keys that you need in the `_KEY_SYMBOLS` string. Now the string equals "123aqwerdf".
 
-2. Use the `-d` command line option to remove extra heroes from the required list:
-```
-checker.py -d
-```
-After the command with `-d`, Naga Siren will be removed from the Tiny's "good against" list.
+4. Specify the minimum combo length in the `_KEY_LENGTH_MIN` variable. Now it equals 2.
 
-Another possible issue is conflicting relations. Let's assume that hero A is good against hero B according to the database. At the same time, the hero B is good again A by accidental mistake.
+5. Specify the maximum combo length in the `_KEY_LENGTH_MAX` variable. Now it equals 4.
 
-This is a possible output of these mistakes:
-```
-Naga Siren has Huskar in both "bad against" and "good against" lists
-Huskar has Naga Siren in both "bad against" and "good against" lists
-```
-It means that Naga Siren and Huskar has conflicting relations and counters each other. You should fix it by the `d2-editor` script in three steps:
+6. Save the `model.py` file and close it.
 
-1. Remove Naga Siren from the "good against..." list of Huskar.
-
-2. Remove Huskar from the "bad against..." list of Naga Siren.
-
-3. Launch the `d2-checker` script again.
-
-Now the report about conflicts should be empty.
-
-The `d2-checker` script works with the database in the Pickle format (the `Database.pkl` file).
-
-### Import and Export
-
-The `d2-picker`, `d2-checker` and `d2-editor` scripts use the database in the Pickle format (the `Database.pkl` file). This is a binary format, which is not convenient for reviewing in a text editor and comparing with other database files.
-
-The `d2-pkl2csv` script allows you to convert the database from the Pickle format to the CSV. If you launch the script, you get the `Database.csv` file in the database directory (see the "Editor" section). You can open this file in any text editor or MS/Libre Office application.
-
-When you are done with reviewing the database in the CSV format, you should launch the `d2-csv2pkl` script. It converts the database back to the Pickle format and stores it in the `Database.pkl` file.
+Now the Key Combo Trainer generates key combos that you need.
 
 ## Update
 
-You can update Dota 2 Counter Picker with the pip package manager or from github repository (see the "Installation" section). Your database files stay unchanged after the update.
+If you need to update the Key Combo Trainer to the latest release, download and extract the new archive from GitHub. Check details in the "Installation" section of this README file.
 
 ## Contacts
 
-If you have any suggestions, bug reports or questions about usage of Dota 2 Counter Picker, please contact me via email petrsum@gmail.com.
+If you have any suggestions, bug reports or questions about usage of the Key Combo Trainer, please contact me via email petrsum@gmail.com.
 
 ## License
 

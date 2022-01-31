@@ -13,7 +13,7 @@ KEY_COMBO = ""
 
 def generate_key_combo(symbols, length_min, length_max):
   return ''.join(random.sample(symbols, \
-                 k = random.randrange(length_min, length_max)))
+                 k = random.randint(length_min, length_max)))
 
 
 def update_key_combo():

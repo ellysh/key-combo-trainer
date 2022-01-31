@@ -3,7 +3,7 @@
 from view import make_window
 from view import main_loop
 
-_VERSION = "0.1.0"
+_VERSION = "0.2.0"
 
 def main():
   window_surface, clock = make_window("Key Combo Trainer " + _VERSION)

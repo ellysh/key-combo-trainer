@@ -1,4 +1,4 @@
-# Key Combo Trainer 0.1.0 version
+# Key Combo Trainer 0.2.0 version
 
 This is the key combo trainer for League of Legends and Dota 2 players.
 
